@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jagadamba Charcoal Emporium</title>
+    <!-- Google Fonts for a professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- General & Base Styles --- */
+        :root {
+            --color-primary: #e67e22; /* Orange */
+            --color-dark: #2c3e50;    /* Dark Blue/Slate */
+            --color-light: #ecf0f1;   /* Light Gray */
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: var(--color-dark);
+            font-weight: 700;
+        }
+
+        h1 { font-size: 2.8rem; }
+        h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; }
+        h3 { font-size: 1.5rem; }
+
+        section {
+            padding: 40px 0;
+        }
+
+        /* --- Header --- */
+        .site-header {
+            background-color: var(--color-dark);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .site-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--color-primary);
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .main-nav a:hover {
+            background-color: var(--color-primary);
+        }
+
+        /* --- Intro Section --- */
+        .intro-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            margin-top: 40px;
+        }
+        .intro-text { flex: 2; }
+        .owner-photo { flex: 1; text-align: center; }
+        .owner-photo img {
+            max-width: 250px;
+            width: 100%;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+        .store-timings {
+            background-color: #fffaf0;
+            padding: 20px;
+            border-left: 4px solid var(--color-primary);
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+
+        /* --- Products Section --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-content { padding: 20px; }
+        .card-content p { color: #666; }
+        .card-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--color-dark);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .card-button:hover { background-color: #34495e; }
+
+        /* --- Form Section --- */
+        .form-section {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            max-width: 700px;
+            margin: 40px auto;
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2);
+        }
+        .submit-button {
+            display: inline-block;
+            background-color: var(--color-primary);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-button:hover { background-color: #d35400; }
+
+        /* --- Footer --- */
+        .site-footer {
+            background-color: var(--color-dark);
+            color: var(--color-light);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .social-icons {
+            margin-bottom: 1rem;
+        }
+        .social-icons a {
+            color: var(--color-light);
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover { color: var(--color-primary); }
+        .social-icons svg { width: 32px; height: 32px; }
+
+        /* --- Modal Styles --- */
+        .modal-container {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            align-items: center;
+            justify-content: center;
+        }
+        /* Class added by JS to show modal */
+        .modal-container.active {
+            display: flex;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.8rem;
+            color: #888;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .modal-close:hover { color: #333; }
+
+        /* --- Media Queries for Responsiveness --- */
+        
+        /* Tablets and below */
+        @media (max-width: 992px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Mobile devices */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+
+            .site-header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .intro-section {
+                flex-direction: column-reverse; /* Owner photo on top */
+                padding: 20px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <img src="Goddess.jpeg" alt="Jagadamba Devi Symbol" style="object-fit: cover; transform: scale(1.4); transition: transform 1s;;">
+                <span class="logo-text">Jagadamba Charcoal</span>
+            </div>
+            <nav class="main-nav">
+                <a href="#products">Products</a>
+                <a href="#interest-form">Interest Form</a>
+                <a href="#social-media">Social</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Intro Section -->
+        <section class="intro-section">
+            <div class="intro-text">
+                <h1>Jagadamba Charcoal Suppliers</h1>
+                <p>Providing the highest quality charcoal for all your grilling and cooking needs.</p>
+                
+                <div class="store-timings">
+                    <h3>Offline Store Timings</h3>
+                    <p><strong>Monday - Sunday:</strong> 9:00 AM - 7:00 PM</p>
+                    <p><em>Come visit us for in-person purchases!</em></p>
+                </div>
+            </div>
+            <div class="owner-photo">
+                <img src="Owner.jpg" alt="Business Owner">
+                <p><strong>Mr. Pandit Rathod</strong><br>Contact: 9890389674<br>Email: jagadambacoalpandit@gmail.com</p>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products">
+            <h2>Types of Charcoal Available</h2>
+            <div class="products-grid">
+                <!-- Card 1: Lump Charcoal -->
+                <div class="card">
+                    <img src="Charcoal1.jpeg" alt="Lump Charcoal">
+                    <div class="card-content">
+                        <h3>Tandoor Coal</h3>
+                        <p>Natural, burns hotter and faster. Perfect for grilling and searing steaks at high temperatures.</p>
+                        <button onclick="openModal('lump')" class="card-button">Learn More</button>
+                    </div>
+                </div>
+                <!-- Card 2: Charcoal Briquettes -->
+                <div class="card">
+                    <img src="Charcoal2.jpeg" alt="Charcoal Briquettes">
+                    <div class="card-content">
+                        <h3>Press Coal</h3>
+                        <p>Uniform shape provides a steady, long-lasting burn. Ideal for slow cooking.</p>
+                        <button onclick="openModal('briquettes')" class="card-button">Learn More</button>
+                    </div>
+                </div>
+                <!-- Card 3: Coconut Shell Charcoal -->
+                <div class="card">
+                    <img src="Charcoal3.jpeg" alt="Coconut Shell Charcoal">
+                    <div class="card-content">
+                        <h3>Earting Coal</h3>
+                        <p>Eco-friendly option that burns cleanly with minimal smoke and very little ash.</p>
+                        <button onclick="openModal('coconut')" class="card-button">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interest Form Section -->
+        <section id="interest-form" class="form-section">
+            <h2>Inquire About Bulk Orders</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="hotel-name">Hotel Name (if applicable)</label>
+                    <input type="text" id="hotel-name" name="hotel-name">
+                </div>
+                <div class="form-group">
+                    <label for="contact-no">Contact No.</label>
+                    <input type="tel" id="contact-no" name="contact-no">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Let us know what you're looking for..."></textarea>
+                </div>
+                <div style="text-align: center;">
+                    <button type="submit" class="submit-button">Submit Inquiry</button>
+                </div>
+            </form>
+        </section>
+         <p style="text-align:center;">Website designed by Pandit Rathod's daughter Sayali Pandit Rathod</p>
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="social-media" class="site-footer">
+        <div class="container">
+            <h3>Connect With Us</h3>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook">
+                    <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>
+                </a>
+                <a href="#" aria-label="Instagram">
+                     <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.315 2zm0 1.62c-2.403 0-2.741.01-3.701.057-.946.043-1.554.204-2.096.417-.559.224-.965.493-1.382.91-.417.417-.686.823-.91 1.382-.213.542-.374 1.15-.417 2.096-.047.96-.057 1.299-.057 3.701s.01 2.741.057 3.701c.043.946.204 1.554.417 2.096.224.559.493.965.91 1.382.417.417.823.686 1.382.91.542.213 1.15.374 2.096.417.96.047 1.299.057 3.701.057s2.741-.01 3.701-.057c.946-.043 1.554-.204 2.096-.417.559-.224.965-.493 1.382.91.417-.417.686-.823.91 1.382.213-.542.374-1.15.417-2.096.047-.96.057-1.299.057-3.701s-.01-2.741-.057-3.701c-.043-.946-.204-1.554-.417-2.096-.224-.559-.493-.965-.91-1.382-.417-.417-.823-.686-1.382-.91-.542-.213-1.15-.374-2.096-.417-.96-.047-1.299-.057-3.701-.057zM12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 8.632a3.497 3.497 0 110-6.994 3.497 3.497 0 010 6.994zM16.949 6.865a1.263 1.263 0 100 2.526 1.263 1.263 0 000-2.526z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+            <p>&copy; 2025 Jagadamba Charcoal Suppliers. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Structure -->
+    <div id="modal-container" class="modal-container">
+        <div class="modal-content">
+            <button onclick="closeModal()" class="modal-close">&times;</button>
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
+    <!-- JavaScript for Functionality -->
+    <script>
+        const modalContainer = document.getElementById('modal-container');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+
+        const modalData = {
+            lump: {
+                title: 'About Lump Charcoal',
+                description: 'Lump charcoal is made from natural hardwood and is prized for its ability to light quickly and burn at very high temperatures. It imparts a natural, smoky flavor to food. Because it\'s pure wood, it leaves behind very little ash, making cleanup easy. It\'s the go-to choice for professional chefs and serious BBQ enthusiasts who want maximum heat for the perfect sear.'
+            },
+            briquettes: {
+                title: 'About Charcoal Briquettes',
+                description: 'Briquettes are manufactured from wood byproducts and additives that help them light and burn consistently. Their uniform pillow shape ensures a stable, reliable, and long-lasting heat, which is perfect for longer cooking sessions like smoking ribs or roasting a whole chicken. They are a dependable and widely available option for backyard grilling.'
+            },
+            coconut: {
+                title: 'About Coconut Shell Charcoal',
+                description: 'Made from the shells of coconuts, this is an environmentally friendly and sustainable charcoal option. It burns very cleanly, producing almost no smoke or odors, which means you taste the food, not the fuel. It\'s also known for its long, steady burn time and producing minimal ash, making it great for both grilling and indoor use in certain appliances.'
+            }
+        };
+
+        function openModal(type) {
+            if (modalData[type]) {
+                modalTitle.textContent = modalData[type].title;
+                modalDescription.textContent = modalData[type].description;
+                modalContainer.classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            modalContainer.classList.remove('active');
+        }
+
+        // Close modal if user clicks outside of the content area
+        modalContainer.addEventListener('click', function(event) {
+            if (event.target === modalContainer) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with the Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+
+    </script>
+
+</body>
+</html>
+
+
+
